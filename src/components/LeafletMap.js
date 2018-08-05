@@ -13,7 +13,11 @@ export default class LeafletMap extends Component {
     const position = [this.state.lat, this.state.lng];
     return (
       <div>
-        <Map center={position} zoom={this.state.zoom}>
+        <Map
+          className="map-element"
+          center={position}
+          zoom={this.state.zoom}
+        >
           <TileLayer
             attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
             url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
