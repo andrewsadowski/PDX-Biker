@@ -6,7 +6,7 @@ export default class LeafletMap extends Component {
   state = {
     lat: 45.5127,
     lng: -122.679565,
-    zoom: 12
+    zoom: 13
   };
 
   render() {
