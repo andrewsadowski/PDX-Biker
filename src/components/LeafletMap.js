@@ -4,13 +4,23 @@ import './LeafletMap.css';
 
 export default class LeafletMap extends Component {
   state = {
-    lat: 45.5127,
-    lng: -122.679565,
+    hasLocation: false,
+    latlng: {
+      lat: 45.5127,
+      lng: -122.679565
+    },
     zoom: 13
   };
 
+  handleLocationFound = e => {
+    this.setState({
+      hasLocation: true,
+      latlng: e.latlng
+    });
+  };
+
   render() {
-    const position = [this.state.lat, this.state.lng];
+    const position = [this.state.latlng.lat, this.state.latlng.lng];
     return (
       <div>
         <Map
