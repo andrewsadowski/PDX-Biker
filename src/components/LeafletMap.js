@@ -6,7 +6,7 @@ export default class LeafletMap extends Component {
   state = {
     lat: 45.5127,
     lng: -122.679565,
-    zoom: 13
+    zoom: 12
   };
 
   render() {
@@ -15,8 +15,8 @@ export default class LeafletMap extends Component {
       <div>
         <Map center={position} zoom={this.state.zoom}>
           <TileLayer
-            attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+            url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
           />
           <Marker position={position}>
             <Popup>
