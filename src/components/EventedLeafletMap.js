@@ -35,6 +35,7 @@ export default class EventsExample extends Component {
 
     return (
       <Map
+        className="map-element"
         center={this.state.latlng}
         length={4}
         onClick={this.handleClick}
