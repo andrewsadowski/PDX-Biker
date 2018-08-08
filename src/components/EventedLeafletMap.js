@@ -1,5 +1,6 @@
 import React, { createRef, Component } from 'react';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import './EventedLeafletMap.css';
 
 export default class EventsExample extends Component {
   state = {
