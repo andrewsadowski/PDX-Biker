@@ -1,5 +1,6 @@
 import React, { createRef, Component } from 'react';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import '../assets/Recommended_Bicycle_Routes.geojson';
 import './EventedLeafletMap.css';
 
 export default class EventsExample extends Component {
