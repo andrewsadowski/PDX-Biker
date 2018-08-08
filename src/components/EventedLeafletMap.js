@@ -53,3 +53,9 @@ export default class EventsExample extends Component {
     );
   }
 }
+
+/** 
+ * TODO:  Add GeoJSON to rendered map
+ *        - live react-leaflet example: https://jsfiddle.net/e3zh51fp/7/
+ *        - leaflet 
+ */

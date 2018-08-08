@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import './LeafletMap.css';
+import '../assets/Recommended_Bicycle_Routes.geojson';
 
 export default class LeafletMap extends Component {
   state = {
