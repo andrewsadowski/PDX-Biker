@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 import LeafletMap from './components/LeafletMap';
 import CurrentLocLeafletMap from './components/CurrentLocLeafletMap';
 import Header from './components/Header';

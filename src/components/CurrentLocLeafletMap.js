@@ -15,6 +15,7 @@ export default class CurrentLocLeafletMap extends Component {
   mapRef = createRef();
 
   handleClick = () => {
+    console.log(this.mapRef.current.leafletElement);
     this.mapRef.current.leafletElement.locate();
   };
 
@@ -40,6 +41,7 @@ export default class CurrentLocLeafletMap extends Component {
         center={this.state.latlng}
         length={4}
         onClick={this.handleClick}
+        setView={true}
         onLocationfound={this.handleLocationFound}
         ref={this.mapRef}
         zoom={13}
