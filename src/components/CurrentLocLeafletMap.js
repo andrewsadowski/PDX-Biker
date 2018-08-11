@@ -3,7 +3,7 @@ import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import '../assets/Recommended_Bicycle_Routes.geojson';
 import './EventedLeafletMap.css';
 
-export default class EventsExample extends Component {
+export default class CurrentLocLeafletMap extends Component {
   state = {
     hasLocation: false,
     latlng: {
@@ -54,8 +54,8 @@ export default class EventsExample extends Component {
   }
 }
 
-/** 
+/**
  * TODO:  Add GeoJSON to rendered map
  *        - live react-leaflet example: https://jsfiddle.net/e3zh51fp/7/
- *        - leaflet 
+ *        - leaflet
  */
