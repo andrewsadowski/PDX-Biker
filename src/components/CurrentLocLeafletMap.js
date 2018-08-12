@@ -29,7 +29,7 @@ export default class CurrentLocLeafletMap extends Component {
         'https://opendata.arcgis.com/datasets/40151125cedd49f09d211b48bb33f081_183.geojson'
       )
       .then(data => {
-        const geoJSONData = data.data.features;
+        const geoJSONData = data.data;
         this.setState({ geoJSON: geoJSONData });
         console.log(data, geoJSONData);
       });
@@ -48,6 +48,14 @@ export default class CurrentLocLeafletMap extends Component {
     });
   };
 
+  getGeoJsonStyle = (feature, layer) => {
+    return {
+      color: '#006400',
+      weight: 5,
+      opacity: 0.65
+    };
+  };
+
   render() {
     const marker = this.state.hasLocation ? (
       <Marker position={this.state.latlng}>
@@ -55,6 +63,13 @@ export default class CurrentLocLeafletMap extends Component {
           <span>You are here</span>
         </Popup>
       </Marker>
+    ) : null;
+
+    const geoJSON = this.state.geoJSON ? (
+      <GeoJSON
+        data={this.state.geoJSON}
+        style={this.getGeoJsonStyle}
+      />
     ) : null;
 
     return (
@@ -73,9 +88,7 @@ export default class CurrentLocLeafletMap extends Component {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {marker}
-        <GeoJSON
-          data={this.state.geoJSON ? this.state.geoJSON : null}
-        />
+        {geoJSON}
       </Map>
     );
   }
