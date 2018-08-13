@@ -1,4 +1,7 @@
 import React, { createRef, Component } from 'react';
+import PropTypes from 'prop-types';
+import L from 'leaflet';
+import geojsonLayer from 'leaflet-ajax';
 import {
   Map,
   TileLayer,
@@ -8,7 +11,30 @@ import {
 } from 'react-leaflet';
 import axios from 'axios';
 import geoJsonData from '../assets/Recommended_Bicycle_Routes.geojson';
-import './EventedLeafletMap.css';
+import './CurrentLocLeafletMap.css';
+
+var geojsonFeature = {
+  type: 'Feature',
+  properties: {
+    OBJECTID: 1,
+    TranPlanID: 'TP07-0000001',
+    ConnectionType: 'SR_DC',
+    StreetName: 'NW SKYLINE BLVD',
+    FromStreet: 'NW BPA RD',
+    ToStreet: 'NW KIELHORN MEADOW ACCESS RD',
+    SHAPE_STLength__: 0,
+    Shape_Length: 483.67464986824706
+  },
+  geometry: {
+    type: 'LineString',
+    coordinates: [
+      [-122.81501722900539, 45.592588629458945],
+      [-122.81544654555778, 45.59275424491035],
+      [-122.8160666166658, 45.593032156832265],
+      [-122.8186358540739, 45.5942687461779]
+    ]
+  }
+};
 
 export default class CurrentLocLeafletMap extends Component {
   state = {
@@ -17,7 +43,7 @@ export default class CurrentLocLeafletMap extends Component {
       lat: 45.5127,
       lng: -122.679565
     },
-    geoJSON: []
+    geoJSON: null
   };
 
   mapRef = createRef();
@@ -29,14 +55,14 @@ export default class CurrentLocLeafletMap extends Component {
         'https://opendata.arcgis.com/datasets/40151125cedd49f09d211b48bb33f081_183.geojson'
       )
       .then(data => {
-        const geoJSONData = data.data;
+        const geoJSONData = data.data.features;
         this.setState({ geoJSON: geoJSONData });
+        // this.objMapGeoJson();
         console.log(data, geoJSONData);
       });
   }
 
   handleClick = () => {
-    console.log(this.mapRef.current.leafletElement);
     this.mapRef.current.leafletElement.locate();
   };
 
@@ -48,10 +74,28 @@ export default class CurrentLocLeafletMap extends Component {
     });
   };
 
+  mapGeoJson = () => {
+    if (!this.state.geoJSON) {
+      console.log('geojson is not loaded');
+    } else {
+      this.state.geoJSON.map(feature => (
+        <GeoJSON data={feature} style={this.getGeoJsonStyle} />
+      ));
+    }
+  };
+
+  objMapGeoJSON = () => {
+    console.log('Mapping over obj');
+    Object.keys(this.state.geoJSON).map(feature => {
+      console.log(`This is the FEATURE${feature}`);
+      return <GeoJSON data={feature} style={this.getStyle} />;
+    });
+  };
+
   getGeoJsonStyle = (feature, layer) => {
     return {
       color: '#006400',
-      weight: 5,
+      weight: 10,
       opacity: 0.65
     };
   };
@@ -63,13 +107,6 @@ export default class CurrentLocLeafletMap extends Component {
           <span>You are here</span>
         </Popup>
       </Marker>
-    ) : null;
-
-    const geoJSON = this.state.geoJSON ? (
-      <GeoJSON
-        data={this.state.geoJSON}
-        style={this.getGeoJsonStyle}
-      />
     ) : null;
 
     return (
@@ -88,7 +125,17 @@ export default class CurrentLocLeafletMap extends Component {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {marker}
-        {geoJSON}
+        {this.state.geoJSON ? (
+          this.state.geoJSON.map(feature => {
+            <GeoJSON data={feature} style={this.getGeoJsonStyle} />;
+          })
+        ) : (
+          <GeoJSON
+            data={geojsonFeature}
+            style={this.getGeoJsonStyle}
+          />
+        )}
+        {this.objMapGeoJson}
       </Map>
     );
   }
@@ -98,4 +145,10 @@ export default class CurrentLocLeafletMap extends Component {
  * TODO:  Add GeoJSON to rendered map
  *        - live react-leaflet example: https://jsfiddle.net/e3zh51fp/7/
  *        - leaflet
+ *        - Using leaflet-ajax: 
+ *              var geojsonLayer = new L.GeoJSON.AJAX(
+      'https://opendata.arcgis.com/datasets/40151125cedd49f09d211b48bb33f081_183.geojson',
+         { dataType: 'geojson' }
+        );
+        this.setState({ geoJSON: geojsonLayer });
  */
