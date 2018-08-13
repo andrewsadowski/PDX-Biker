@@ -57,7 +57,7 @@ export default class CurrentLocLeafletMap extends Component {
       .then(data => {
         const geoJSONData = data.data.features;
         this.setState({ geoJSON: geoJSONData });
-        // this.objMapGeoJson();
+
         console.log(data, geoJSONData);
       });
   }
@@ -87,7 +87,6 @@ export default class CurrentLocLeafletMap extends Component {
   objMapGeoJSON = () => {
     console.log('Mapping over obj');
     Object.keys(this.state.geoJSON).map(feature => {
-      console.log(`This is the FEATURE${feature}`);
       return <GeoJSON data={feature} style={this.getStyle} />;
     });
   };
@@ -131,11 +130,11 @@ export default class CurrentLocLeafletMap extends Component {
           })
         ) : (
           <GeoJSON
-            data={geojsonFeature}
+            data={this.state.geoJSON}
             style={this.getGeoJsonStyle}
           />
         )}
-        {this.objMapGeoJson}
+        <GeoJSON data={geojsonFeature} style={this.getGeoJsonStyle} />
       </Map>
     );
   }
