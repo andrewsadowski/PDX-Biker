@@ -35,7 +35,7 @@ export default class CurrentLocLeafletMap extends Component {
       .then(data => {
         const geoJSONData = data.data;
         this.setState({ geoJSON: geoJSONData });
-
+        this.displayGeoJson();
         console.log(data, geoJSONData);
       });
   }
@@ -52,16 +52,6 @@ export default class CurrentLocLeafletMap extends Component {
     });
   };
 
-  mapGeoJson = () => {
-    if (!this.state.geoJSON) {
-      console.log('geojson is not loaded');
-    } else {
-      this.state.geoJSON.map(feature => (
-        <GeoJSON data={feature} style={this.getGeoJsonStyle} />
-      ));
-    }
-  };
-
   displayGeoJson = () => {
     if (this.state.geoJSON > 0) {
       return (
@@ -72,6 +62,7 @@ export default class CurrentLocLeafletMap extends Component {
       );
     }
   };
+
   getGeoJsonStyle = (feature, layer) => {
     return {
       color: '#006400',
