@@ -2,6 +2,7 @@ import React, { createRef, Component } from 'react';
 import PropTypes from 'prop-types';
 import L from 'leaflet';
 import geojsonLayer from 'leaflet-ajax';
+import fs from 'fs';
 import {
   Map,
   TileLayer,
@@ -55,7 +56,7 @@ export default class CurrentLocLeafletMap extends Component {
         'https://opendata.arcgis.com/datasets/40151125cedd49f09d211b48bb33f081_183.geojson'
       )
       .then(data => {
-        const geoJSONData = data.data.features;
+        const geoJSONData = data;
         this.setState({ geoJSON: geoJSONData });
 
         console.log(data, geoJSONData);
@@ -84,13 +85,23 @@ export default class CurrentLocLeafletMap extends Component {
     }
   };
 
-  objMapGeoJSON = () => {
-    console.log('Mapping over obj');
-    Object.keys(this.state.geoJSON).map(feature => {
-      return <GeoJSON data={feature} style={this.getStyle} />;
-    });
-  };
+  // objMapGeoJSON = () => {
+  //   console.log('Mapping over obj');
+  //   Object.keys(this.state.geoJSON).map(feature => {
+  //     return <GeoJSON data={feature} style={this.getStyle} />;
+  //   });
+  // };
 
+  displayGeoJson = () => {
+    if (this.state.geoJSON > 0) {
+      return (
+        <GeoJSON
+          data={this.state.geoJSON}
+          style={this.getGeoJsonStyle}
+        />
+      );
+    }
+  };
   getGeoJsonStyle = (feature, layer) => {
     return {
       color: '#006400',
@@ -124,17 +135,8 @@ export default class CurrentLocLeafletMap extends Component {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {marker}
-        {this.state.geoJSON ? (
-          this.state.geoJSON.map(feature => {
-            <GeoJSON data={feature} style={this.getGeoJsonStyle} />;
-          })
-        ) : (
-          <GeoJSON
-            data={this.state.geoJSON}
-            style={this.getGeoJsonStyle}
-          />
-        )}
-        <GeoJSON data={geojsonFeature} style={this.getGeoJsonStyle} />
+        {this.displayGeoJson}
+        {this.displayGeoJson()}
       </Map>
     );
   }
