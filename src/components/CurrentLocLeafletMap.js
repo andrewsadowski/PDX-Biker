@@ -14,29 +14,6 @@ import axios from 'axios';
 import geoJsonData from '../assets/Recommended_Bicycle_Routes.geojson';
 import './CurrentLocLeafletMap.css';
 
-var geojsonFeature = {
-  type: 'Feature',
-  properties: {
-    OBJECTID: 1,
-    TranPlanID: 'TP07-0000001',
-    ConnectionType: 'SR_DC',
-    StreetName: 'NW SKYLINE BLVD',
-    FromStreet: 'NW BPA RD',
-    ToStreet: 'NW KIELHORN MEADOW ACCESS RD',
-    SHAPE_STLength__: 0,
-    Shape_Length: 483.67464986824706
-  },
-  geometry: {
-    type: 'LineString',
-    coordinates: [
-      [-122.81501722900539, 45.592588629458945],
-      [-122.81544654555778, 45.59275424491035],
-      [-122.8160666166658, 45.593032156832265],
-      [-122.8186358540739, 45.5942687461779]
-    ]
-  }
-};
-
 export default class CurrentLocLeafletMap extends Component {
   state = {
     hasLocation: false,
@@ -56,7 +33,7 @@ export default class CurrentLocLeafletMap extends Component {
         'https://opendata.arcgis.com/datasets/40151125cedd49f09d211b48bb33f081_183.geojson'
       )
       .then(data => {
-        const geoJSONData = data;
+        const geoJSONData = data.data;
         this.setState({ geoJSON: geoJSONData });
 
         console.log(data, geoJSONData);
@@ -84,13 +61,6 @@ export default class CurrentLocLeafletMap extends Component {
       ));
     }
   };
-
-  // objMapGeoJSON = () => {
-  //   console.log('Mapping over obj');
-  //   Object.keys(this.state.geoJSON).map(feature => {
-  //     return <GeoJSON data={feature} style={this.getStyle} />;
-  //   });
-  // };
 
   displayGeoJson = () => {
     if (this.state.geoJSON > 0) {
@@ -136,7 +106,6 @@ export default class CurrentLocLeafletMap extends Component {
         />
         {marker}
         {this.displayGeoJson}
-        {this.displayGeoJson()}
       </Map>
     );
   }
