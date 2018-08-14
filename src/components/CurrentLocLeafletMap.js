@@ -1,18 +1,17 @@
-import React, { createRef, Component } from 'react';
-import PropTypes from 'prop-types';
-import L from 'leaflet';
-import geojsonLayer from 'leaflet-ajax';
-import fs from 'fs';
+import React, { createRef, Component } from "react";
+import PropTypes from "prop-types";
+import L from "leaflet";
+import fs from "fs";
 import {
   Map,
   TileLayer,
   Marker,
   Popup,
   GeoJSON
-} from 'react-leaflet';
-import axios from 'axios';
-import geoJsonData from '../assets/Recommended_Bicycle_Routes.geojson';
-import './CurrentLocLeafletMap.css';
+} from "react-leaflet";
+import axios from "axios";
+import geoJsonData from "../assets/Recommended_Bicycle_Routes.geojson";
+import "./CurrentLocLeafletMap.css";
 
 export default class CurrentLocLeafletMap extends Component {
   state = {
@@ -27,16 +26,20 @@ export default class CurrentLocLeafletMap extends Component {
   mapRef = createRef();
 
   componentDidMount() {
-    this.mapRef.current.leafletElement.locate({ setView: true });
+    this.mapRef.current.leafletElement.locate({
+      setView: true
+    });
     axios
       .get(
-        'https://opendata.arcgis.com/datasets/40151125cedd49f09d211b48bb33f081_183.geojson'
+        "https://opendata.arcgis.com/datasets/40151125cedd49f09d211b48bb33f081_183.geojson"
       )
       .then(data => {
         const geoJSONData = data.data;
         this.setState({ geoJSON: geoJSONData });
-        this.displayGeoJson();
         console.log(data, geoJSONData);
+        return L.geoJSON(geoJSONData).addTo(
+          this.mapRef.current.leafletElement
+        );
       });
   }
 
@@ -65,7 +68,7 @@ export default class CurrentLocLeafletMap extends Component {
 
   getGeoJsonStyle = (feature, layer) => {
     return {
-      color: '#006400',
+      color: "#006400",
       weight: 10,
       opacity: 0.65
     };
@@ -96,7 +99,6 @@ export default class CurrentLocLeafletMap extends Component {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {marker}
-        {this.displayGeoJson}
       </Map>
     );
   }
