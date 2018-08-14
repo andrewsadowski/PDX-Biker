@@ -1,7 +1,5 @@
 import React, { createRef, Component } from "react";
-import PropTypes from "prop-types";
 import L from "leaflet";
-import fs from "fs";
 import {
   Map,
   TileLayer,
@@ -27,7 +25,8 @@ export default class CurrentLocLeafletMap extends Component {
 
   componentDidMount() {
     this.mapRef.current.leafletElement.locate({
-      setView: true
+      setView: true,
+      watch: true
     });
     axios
       .get(
@@ -37,7 +36,7 @@ export default class CurrentLocLeafletMap extends Component {
         const geoJSONData = data.data;
         this.setState({ geoJSON: geoJSONData });
         console.log(data, geoJSONData);
-        return L.geoJSON(geoJSONData).addTo(
+        return L.geoJSON(this.state.geoJSON).addTo(
           this.mapRef.current.leafletElement
         );
       });
@@ -53,17 +52,6 @@ export default class CurrentLocLeafletMap extends Component {
       hasLocation: true,
       latlng: e.latlng
     });
-  };
-
-  displayGeoJson = () => {
-    if (this.state.geoJSON > 0) {
-      return (
-        <GeoJSON
-          data={this.state.geoJSON}
-          style={this.getGeoJsonStyle}
-        />
-      );
-    }
   };
 
   getGeoJsonStyle = (feature, layer) => {
@@ -92,7 +80,7 @@ export default class CurrentLocLeafletMap extends Component {
         setView={true}
         onLocationfound={this.handleLocationFound}
         ref={this.mapRef}
-        zoom={13}
+        zoom={14}
       >
         <TileLayer
           attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
