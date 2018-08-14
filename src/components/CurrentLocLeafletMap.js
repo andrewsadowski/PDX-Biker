@@ -4,11 +4,9 @@ import {
   Map,
   TileLayer,
   Marker,
-  Popup,
-  GeoJSON
+  Popup
 } from "react-leaflet";
 import axios from "axios";
-import geoJsonData from "../assets/Recommended_Bicycle_Routes.geojson";
 import "./CurrentLocLeafletMap.css";
 
 export default class CurrentLocLeafletMap extends Component {
@@ -96,7 +94,7 @@ export default class CurrentLocLeafletMap extends Component {
  * TODO:  Add GeoJSON to rendered map
  *        - live react-leaflet example: https://jsfiddle.net/e3zh51fp/7/
  *        - leaflet
- *        - Using leaflet-ajax: 
+ *        - Using leaflet-ajax:
  *              var geojsonLayer = new L.GeoJSON.AJAX(
       'https://opendata.arcgis.com/datasets/40151125cedd49f09d211b48bb33f081_183.geojson',
          { dataType: 'geojson' }
