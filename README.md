@@ -8,7 +8,7 @@ Either go [here](https://smooth-clocks.surge.sh/), or clone the repo, type: `npm
 
 ### Prerequisites
 
-Recent version of NodeJS installed and configured (https://nodejs.org/en/download/). `npm install`
+For developing locally: recent version of NodeJS installed and configured. Get that [here](https://nodejs.org/en/download/).
 
 ### Installing
 

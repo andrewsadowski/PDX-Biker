@@ -1,13 +1,8 @@
-import React, { createRef, Component } from "react";
-import L from "leaflet";
-import {
-  Map,
-  TileLayer,
-  Marker,
-  Popup
-} from "react-leaflet";
-import axios from "axios";
-import "./CurrentLocLeafletMap.css";
+import React, { createRef, Component } from 'react';
+import L from 'leaflet';
+import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import axios from 'axios';
+import './CurrentLocLeafletMap.css';
 
 export default class CurrentLocLeafletMap extends Component {
   state = {
@@ -23,12 +18,11 @@ export default class CurrentLocLeafletMap extends Component {
 
   componentDidMount() {
     this.mapRef.current.leafletElement.locate({
-      setView: true,
-      watch: true
+      setView: true
     });
     axios
       .get(
-        "https://opendata.arcgis.com/datasets/40151125cedd49f09d211b48bb33f081_183.geojson"
+        'https://opendata.arcgis.com/datasets/40151125cedd49f09d211b48bb33f081_183.geojson'
       )
       .then(data => {
         const geoJSONData = data.data;
@@ -54,7 +48,7 @@ export default class CurrentLocLeafletMap extends Component {
 
   getGeoJsonStyle = (feature, layer) => {
     return {
-      color: "#006400",
+      color: '#006400',
       weight: 10,
       opacity: 0.65
     };
@@ -91,13 +85,8 @@ export default class CurrentLocLeafletMap extends Component {
 }
 
 /**
- * TODO:  Add GeoJSON to rendered map
- *        - live react-leaflet example: https://jsfiddle.net/e3zh51fp/7/
- *        - leaflet
- *        - Using leaflet-ajax:
- *              var geojsonLayer = new L.GeoJSON.AJAX(
-      'https://opendata.arcgis.com/datasets/40151125cedd49f09d211b48bb33f081_183.geojson',
-         { dataType: 'geojson' }
-        );
-        this.setState({ geoJSON: geojsonLayer });
+ * TODO:  Add Header + Legend to map
+ *        - Header to be styled
+ *        - Legend to be present in header
+ *
  */
