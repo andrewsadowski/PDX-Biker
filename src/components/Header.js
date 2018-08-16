@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Legend from './Legend';
 import './Header.css';
 
 export default class Header extends Component {
