@@ -19,9 +19,11 @@ export default class CurrentLocLeafletMap extends Component {
   mapRef = createRef();
 
   componentDidMount() {
-    this.mapRef.current.leafletElement.locate({
-      setView: true
-    });
+    if (!this.state.hasLocation) {
+      this.mapRef.current.leafletElement.locate({
+        setView: true
+      });
+    }
     axios
       .get(
         'https://opendata.arcgis.com/datasets/40151125cedd49f09d211b48bb33f081_183.geojson'
@@ -80,11 +82,6 @@ export default class CurrentLocLeafletMap extends Component {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {marker}
-        <Legend>
-          <ul>
-            <li>BikeStreet</li>
-          </ul>
-        </Legend>
       </Map>
     );
   }
