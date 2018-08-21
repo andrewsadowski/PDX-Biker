@@ -1,21 +1,24 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import L from 'leaflet';
-import { MapControl } from 'react-leaflet';
+// import L from 'leaflet';
 
-import './Legend.css';
+// export default (Legend = () => {
+//   L.Control.Watermark = L.Control.extend({
+//     onAdd: function(map) {
+//       var img = L.DomUtil.create('img');
 
-export default class Legend extends MapControl {
-  componentWillMount() {
-    const legend = L.control({ position: 'bottomright' });
-    const jsx = <div {...this.props}>{this.props.children}</div>;
+//       img.src = '../assets/logo.png';
+//       img.style.width = '200px';
 
-    legend.onAdd = function(map) {
-      let div = L.DomUtil.create('div', '');
-      ReactDOM.render(jsx, div);
-      return div;
-    };
+//       return img;
+//     },
 
-    this.leafletElement = legend;
-  }
-}
+//     onRemove: function(map) {
+//       // Nothing to do here
+//     }
+//   });
+
+//   L.control.watermark = function(opts) {
+//     return new L.Control.Watermark(opts);
+//   };
+
+//   L.control.watermark({ position: 'bottomleft' }).addTo(map);
+// });

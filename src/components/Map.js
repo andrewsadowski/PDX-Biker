@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import L from 'leaflet';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import axios from 'axios';
-import Legend from './Legend';
+
 import './Map.css';
 
 export default class CurrentLocLeafletMap extends Component {
@@ -19,6 +19,7 @@ export default class CurrentLocLeafletMap extends Component {
   mapRef = createRef();
 
   componentDidMount() {
+    this.addLegend();
     if (!this.state.hasLocation) {
       this.mapRef.current.leafletElement.locate({
         setView: true
@@ -55,6 +56,26 @@ export default class CurrentLocLeafletMap extends Component {
       weight: 10,
       opacity: 0.65
     };
+  };
+
+  addLegend = () => {
+    const map = this.mapRef.current.leafletElement;
+    L.Control.Watermark = L.Control.extend({
+      onAdd: function(map) {
+        var img = L.DomUtil.create('img');
+
+        img.src = 'https://leafletjs.com/docs/images/logo.png';
+        img.style.width = '200px';
+
+        return img;
+      }
+    });
+
+    L.control.watermark = function(opts) {
+      return new L.Control.Watermark(opts);
+    };
+
+    L.control.watermark({ position: 'bottomleft' }).addTo(map);
   };
 
   render() {
