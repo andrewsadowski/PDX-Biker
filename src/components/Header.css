@@ -1,15 +1,37 @@
 .header-container {
-  display: grid;
-  background: rgba(0, 0, 0, 0.5);
-  flex-direction: column;
-  align-items: flex-start;
-  width: 50%;
+  border-radius: 25px;
+  display: inline-grid;
+  width: auto;
+  height: auto;
+  z-index: 401;
+  justify-content: center;
+  position: relative;
+  grid-template-columns: repeat(4, 1fr);
+  background: #304352;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #d7d2cc, #304352);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #d7d2cc, #304352);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.header-city {
+  font-family: 'Bungee Shade', cursive;
+  font-size: 20px;
 }
 
 .header-title {
-  padding: 10px;
+  grid-column: 1 / span 2;
+  font-size: 20px;
+  align-self: end;
+  justify-self: center;
+  font-family: 'Faster One', cursive;
 }
 
 .header-subtitle {
+  grid-column: 3 / span 2;
+  align-self: start;
   padding: 10px;
+  font-size: 12px;
+  font-family: 'Vampiro One', cursive;
 }
