@@ -1,11 +1,14 @@
 .header-container {
-  border-radius: 25px;
+  border-radius: 10px;
   display: inline-grid;
   width: auto;
   height: auto;
   z-index: 401;
+  opacity: 0.7;
   justify-content: center;
-  position: relative;
+  align-content: center;
+  left: 200px;
+  position: absolute;
   grid-template-columns: repeat(4, 1fr);
   background: #304352;
   /* fallback for old browsers */
@@ -16,6 +19,7 @@
 }
 
 .header-city {
+  opacity: 1;
   font-family: 'Bungee Shade', cursive;
   font-size: 20px;
 }
@@ -23,14 +27,18 @@
 .header-title {
   grid-column: 1 / span 2;
   font-size: 20px;
+  opacity: 1;
+  font-weight: bold;
   align-self: end;
   justify-self: center;
   font-family: 'Faster One', cursive;
 }
 
 .header-subtitle {
+  opacity: 1;
   grid-column: 3 / span 2;
   align-self: start;
+  justify-self: left;
   padding: 10px;
   font-size: 12px;
   font-family: 'Vampiro One', cursive;

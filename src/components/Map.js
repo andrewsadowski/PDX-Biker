@@ -1,12 +1,19 @@
 import React, { createRef, Component } from 'react';
 import ReactDOM from 'react-dom';
 import L from 'leaflet';
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import {
+  Map,
+  TileLayer,
+  Marker,
+  Popup,
+  DivOverlay
+} from 'react-leaflet';
 import axios from 'axios';
+import Header from './Header';
 
 import './Map.css';
 
-export default class CurrentLocLeafletMap extends Component {
+export default class PDXMap extends Component {
   state = {
     hasLocation: false,
     latlng: {
@@ -54,7 +61,7 @@ export default class CurrentLocLeafletMap extends Component {
     return {
       color: '#006400',
       weight: 10,
-      opacity: 0.65
+      opacity: 0.5
     };
   };
 
