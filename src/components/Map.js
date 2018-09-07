@@ -1,17 +1,17 @@
-import React, { createRef, Component } from 'react';
-import ReactDOM from 'react-dom';
-import L from 'leaflet';
+import React, { createRef, Component } from "react";
+import ReactDOM from "react-dom";
+import L from "leaflet";
 import {
   Map,
   TileLayer,
   Marker,
   Popup,
   DivOverlay
-} from 'react-leaflet';
-import axios from 'axios';
-import Header from './Header';
+} from "react-leaflet";
+import axios from "axios";
+import Header from "./Header";
 
-import './Map.css';
+import "./Map.css";
 
 export default class PDXMap extends Component {
   state = {
@@ -34,7 +34,7 @@ export default class PDXMap extends Component {
     }
     axios
       .get(
-        'https://opendata.arcgis.com/datasets/40151125cedd49f09d211b48bb33f081_183.geojson'
+        "https://opendata.arcgis.com/datasets/40151125cedd49f09d211b48bb33f081_183.geojson"
       )
       .then(data => {
         const geoJSONData = data.data;
@@ -59,31 +59,31 @@ export default class PDXMap extends Component {
 
   getGeoJsonStyle = (feature, layer) => {
     return {
-      color: '#006400',
+      color: "#006400",
       weight: 10,
       opacity: 0.5
     };
   };
 
-  addLegend = () => {
-    const map = this.mapRef.current.leafletElement;
-    L.Control.Watermark = L.Control.extend({
-      onAdd: function(map) {
-        var img = L.DomUtil.create('img');
+  // addWatermark = () => {
+  //   const map = this.mapRef.current.leafletElement;
+  //   L.Control.Watermark = L.Control.extend({
+  //     onAdd: function(map) {
+  //       var img = L.DomUtil.create('img');
 
-        img.src = 'https://leafletjs.com/docs/images/logo.png';
-        img.style.width = '200px';
+  //       img.src = 'https://leafletjs.com/docs/images/logo.png';
+  //       img.style.width = '200px';
 
-        return img;
-      }
-    });
+  //       return img;
+  //     }
+  //   });
 
-    L.control.watermark = function(opts) {
-      return new L.Control.Watermark(opts);
-    };
+  //   L.control.watermark = function(opts) {
+  //     return new L.Control.Watermark(opts);
+  //   };
 
-    L.control.watermark({ position: 'bottomleft' }).addTo(map);
-  };
+  //   L.control.watermark({ position: 'bottomleft' }).addTo(map);
+  // };
 
   render() {
     const marker = this.state.hasLocation ? (
