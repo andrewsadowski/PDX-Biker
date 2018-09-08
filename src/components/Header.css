@@ -1,31 +1,32 @@
 .header-container {
-  display: inline-grid;
-  width: auto;
+  display: flex;
+  width: 125px;
   height: auto;
   z-index: 401;
-  opacity: 0.8;
+  border-radius: 70px;
+  opacity: 0.9;
   justify-content: center;
   align-content: center;
   right: 0;
   position: absolute;
   grid-template-columns: repeat(4, 1fr);
-  background: #304352;
+  background: #108dc7;
   /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #d7d2cc, #304352);
+  background: -webkit-linear-gradient(to right, #ef8e38, #108dc7);
   /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, rgba(255, 225, 225, 25%), #304352);
+  background: linear-gradient(to right, #ef8e38, #108dc7);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .header-city {
   opacity: 1;
   font-family: 'Bungee Shade', cursive;
-  font-size: 20px;
+  font-size: 30px;
 }
 
 .header-title {
   grid-column: 1 / span 2;
-  font-size: 20px;
+  font-size: 30px;
   opacity: 1;
   font-weight: bold;
   align-self: end;
@@ -33,7 +34,7 @@
   font-family: 'Faster One', cursive;
 }
 
-.header-subtitle {
+/* .header-subtitle {
   opacity: 1;
   grid-column: 3 / span 2;
   align-self: start;
@@ -41,4 +42,4 @@
   padding: 10px;
   font-size: 12px;
   font-family: 'Vampiro One', cursive;
-}
+} */

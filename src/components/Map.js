@@ -89,7 +89,7 @@ export default class PDXMap extends Component {
     const marker = this.state.hasLocation ? (
       <Marker position={this.state.latlng}>
         <Popup>
-          <span>You are here</span>
+          <span>You are here!</span>
         </Popup>
       </Marker>
     ) : null;
