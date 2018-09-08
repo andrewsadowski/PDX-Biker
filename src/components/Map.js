@@ -1,17 +1,17 @@
-import React, { createRef, Component } from "react";
-import ReactDOM from "react-dom";
-import L from "leaflet";
+import React, { createRef, Component } from 'react';
+import ReactDOM from 'react-dom';
+import L from 'leaflet';
 import {
   Map,
   TileLayer,
   Marker,
   Popup,
   DivOverlay
-} from "react-leaflet";
-import axios from "axios";
-import Header from "./Header";
+} from 'react-leaflet';
+import axios from 'axios';
+import Header from './Header';
 
-import "./Map.css";
+import './Map.css';
 
 export default class PDXMap extends Component {
   state = {
@@ -26,7 +26,7 @@ export default class PDXMap extends Component {
   mapRef = createRef();
 
   componentDidMount() {
-    this.addLegend();
+    // this.addWatermark();
     if (!this.state.hasLocation) {
       this.mapRef.current.leafletElement.locate({
         setView: true
@@ -34,7 +34,7 @@ export default class PDXMap extends Component {
     }
     axios
       .get(
-        "https://opendata.arcgis.com/datasets/40151125cedd49f09d211b48bb33f081_183.geojson"
+        'https://opendata.arcgis.com/datasets/40151125cedd49f09d211b48bb33f081_183.geojson'
       )
       .then(data => {
         const geoJSONData = data.data;
@@ -59,7 +59,7 @@ export default class PDXMap extends Component {
 
   getGeoJsonStyle = (feature, layer) => {
     return {
-      color: "#006400",
+      color: '#006400',
       weight: 10,
       opacity: 0.5
     };
