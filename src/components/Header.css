@@ -9,7 +9,6 @@
   align-content: center;
   right: 0;
   position: absolute;
-  grid-template-columns: repeat(4, 1fr);
   background: #108dc7;
   /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #ef8e38, #108dc7);
