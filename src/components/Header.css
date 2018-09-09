@@ -32,6 +32,19 @@
   font-family: 'Faster One', cursive;
 }
 
+/* @media (min-width: 320px) and (max-width: 480px) {
+  .header-container {
+    display: flex;
+    height: auto;
+    width: 100vh;
+    border-radius: 1px;
+    justify-content: flex-end;
+  }
+  .header-title {
+    align-self: flex-start;
+  }
+} */
+
 /* .header-subtitle {
   opacity: 1;
   grid-column: 3 / span 2;
