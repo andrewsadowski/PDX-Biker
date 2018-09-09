@@ -10,10 +10,6 @@ export default class Header extends Component {
           <br />
           Biker
         </h2>
-        {/* <p className="header-subtitle">
-          Find the closest bike-friendly
-          <br /> streets near you
-        </p> */}
       </div>
     );
   }
