@@ -74,7 +74,7 @@ export default class PDXMap extends Component {
         length={4}
         onClick={this.handleClick}
         setView={true}
-        onLocationfound={this.handleLocationFound}
+        onLocationFound={this.handleLocationFound}
         ref={this.mapRef}
         zoom={14}
       >
