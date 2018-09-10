@@ -32,7 +32,7 @@
   font-family: 'Faster One', cursive;
 }
 
-/* @media (min-width: 320px) and (max-width: 480px) {
+ @media (min-width: 320px) and (max-width: 480px) {
   .header-container {
     display: flex;
     height: auto;
@@ -43,7 +43,7 @@
   .header-title {
     align-self: flex-start;
   }
-} */
+} 
 
 /* .header-subtitle {
   opacity: 1;

@@ -8,6 +8,7 @@
     "leaflet-ajax": "^2.1.0",
     "normalize.css": "^8.0.0",
     "prop-types": "^15.6.2",
+    "randomcolor": "^0.5.3",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-leaflet": "^2.0.0",
