@@ -20,7 +20,6 @@ export default class PDXMap extends Component {
   mapRef = createRef();
 
   componentDidMount() {
-    // this.addWatermark();
     if (!this.state.hasLocation) {
       this.mapRef.current.leafletElement.locate({
         setView: true
@@ -58,26 +57,6 @@ export default class PDXMap extends Component {
       opacity: 0.5
     };
   };
-
-  // addWatermark = () => {
-  //   const map = this.mapRef.current.leafletElement;
-  //   L.Control.Watermark = L.Control.extend({
-  //     onAdd: function(map) {
-  //       var img = L.DomUtil.create('img');
-
-  //       img.src = 'https://leafletjs.com/docs/images/logo.png';
-  //       img.style.width = '200px';
-
-  //       return img;
-  //     }
-  //   });
-
-  //   L.control.watermark = function(opts) {
-  //     return new L.Control.Watermark(opts);
-  //   };
-
-  //   L.control.watermark({ position: 'bottomleft' }).addTo(map);
-  // };
 
   render() {
     const marker = this.state.hasLocation ? (
