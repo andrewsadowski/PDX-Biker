@@ -89,8 +89,6 @@ export default class PDXMap extends Component {
 }
 
 /**
- * TODO:  Add Header + Legend to map
- *        - Header to be styled
- *        - Legend to be present in header
+ * TODO:  Add Header + Legend to
  *
  */
