@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Map from './components/Map';
+import MapContainer from './components/MapContainer';
 import Header from './components/Header';
 import './App.css';
 
@@ -8,7 +8,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Map />
+				<MapContainer />	
       </div>
     );
   }
