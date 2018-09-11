@@ -4,7 +4,7 @@ A React-Leaflet web application that shows a map of Portland Oregon with all the
 
 ## Getting Started
 
-Either go [here](https://possessive-face.surge.sh), or clone the repo, type: `npm i && npm run start`and check your browser!
+Either go [here](https://pdx-biker.com/), or clone the repo, type: `npm i && npm run start`and check your browser!
 
 ### Prerequisites
 

@@ -10,10 +10,12 @@
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-leaflet": "^2.0.0",
-    "react-scripts": "1.1.4"
+    "react-scripts": "1.1.4",
+    "serve": "^10.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
+    "now-start": "serve --single ./build",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
