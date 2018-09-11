@@ -1,131 +1,116 @@
 import React, { createRef, Component } from 'react';
 import ReactDOM from 'react-dom';
 import L from 'leaflet';
-import {
-  Map,
-  TileLayer,
-  Marker,
-  Popup,
-  DivOverlay
-} from 'react-leaflet';
-// import { randomColor } from 'randomcolor';
+import { Map, TileLayer, Marker, Popup, DivOverlay } from 'react-leaflet';
 
 import './Map.css';
 
 const ARCGIS_REQUEST_URL = 'https://opendata.arcgis.com/datasets/40151125cedd49f09d211b48bb33f081_183.geojson';
 
 export default class PDXMap extends Component {
-  constructor(props) {
-    super(props);
-
-    this.mapRef = createRef();
-  }
-
-  componentDidMount() {
-    const { geoJSON, status } = this.props;
-    const map = this.mapRef.current.leafletElement;
-
-    /***
-     * Using navigator.geolocation.getCurrentPosition 
-     * in MapContainer to get users position, which is
-     * then passed to Map component as props.
-     */
-    if (!status.locationFound) {
-      map.locate({
-        setView: true
-      });
+    constructor(props) {
+        super(props);
+        this.mapRef = createRef();
     }
-    
-    L.geoJSON(geoJSON, {
-      style: feature => {
-        return { 
-          // color: feature.properties.collor || randomColor(),
-          weight: 5,
-          opacity: 0.8
+
+    componentDidMount() {
+        const { geoJSON, status } = this.props;
+        const map = this.mapRef.current.leafletElement;
+
+        /***
+         * Using navigator.geolocation.getCurrentPosition
+         * in MapContainer to get users position, which is
+         * then passed to Map component as props.
+         */
+        if (!status.locationFound) {
+            map.locate({ setView: true });
         }
-      }
-    }).addTo(map);
-  }
 
-  handleClick = () => {
-    console.log('### this.mapRef:', this.mapRef)
-    this.mapRef.current.leafletElement.locate();
-  };
+        L.geoJSON(geoJSON, {
+            style: feature => {
+                return {
+                    weight: 5,
+                    opacity: 0.8
+                };
+            }
+        }).addTo(map);
+    }
 
-  handleLocationFound = e => {
-    console.log(e);
-    this.setState({
-      hasLocation: true,
-      latlng: e.latlng
-    });
-  };
-
-  getGeoJsonStyle = (feature, layer) => {
-    return {
-      color: '#006400',
-      weight: 10,
-      opacity: 0.5
+    handleClick = () => {
+        console.log('### this.mapRef:', this.mapRef)
+        this.mapRef.current.leafletElement.locate();
     };
-  };
 
-  // addWatermark = () => {
-  //   const map = this.mapRef.current.leafletElement;
-  //   L.Control.Watermark = L.Control.extend({
-  //     onAdd: function(map) {
-  //       var img = L.DomUtil.create('img');
+    handleLocationFound = e => {
+        console.log(e);
+        this.setState({
+            hasLocation: true,
+            latlng: e.latlng
+        });
+    };
 
-  //       img.src = 'https://leafletjs.com/docs/images/logo.png';
-  //       img.style.width = '200px';
+    getGeoJsonStyle = (feature, layer) => {
+        return {
+            color: '#006400',
+            weight: 10,
+            opacity: 0.5
+        };
+    };
 
-  //       return img;
-  //     }
-  //   });
+    // addWatermark = () => {
+    //   const map = this.mapRef.current.leafletElement;
+    //   L.Control.Watermark = L.Control.extend({
+    //     onAdd: function(map) {
+    //       var img = L.DomUtil.create('img');
 
-  //   L.control.watermark = function(opts) {
-  //     return new L.Control.Watermark(opts);
-  //   };
+    //       img.src = 'https://leafletjs.com/docs/images/logo.png';
+    //       img.style.width = '200px';
 
-  //   L.control.watermark({ position: 'bottomleft' }).addTo(map);
-  // };
+    //       return img;
+    //     }
+    //   });
 
-  renderMarker() {
-    const { latlng } = this.props;
+    //   L.control.watermark = function(opts) {
+    //     return new L.Control.Watermark(opts);
+    //   };
 
-    return (
-      <Marker position={latlng}>
-        <Popup>
-          <span>You are here!</span>
-        </Popup>
-      </Marker>
-    );
-  }
+    //   L.control.watermark({ position: 'bottomleft' }).addTo(map);
+    // };
 
-  render() {
-    const { 
-      status,
-      latlng,
-      handleLocationFound,
-    } = this.props;
+    renderMarker() {
+        const {latlng} = this.props;
 
-    return (
-      <Map
-        className="map-element"
-        center={latlng}
-        length={4}
-        onClick={this.handleClick}
-        setView={true}
-        onLocationfound={() => handleLocationFound()}
-        ref={this.mapRef}
-        zoom={14}
-      >
-        <TileLayer
-          attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        {status.locationFound && this.renderMarker()}
-      </Map>
-    );
-  }
+        return (
+            <Marker position={latlng}>
+                <Popup>
+                    <span>You are here!</span>
+                </Popup>
+            </Marker>
+        );
+    }
+
+    render() {
+        const {status, latlng, handleLocationFound} = this.props;
+
+        return (
+            <Map
+                className="map-element"
+                center={latlng}
+                length={4}
+                onClick={this.handleClick}
+                setView={true}
+                onLocationfound={() => handleLocationFound()}
+                ref={this.mapRef}
+                zoom={14}
+            >
+                <TileLayer
+                    attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors" url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+
+                {status.locationFound && this.renderMarker()}
+            </Map>
+        );
+    }
 }
 
 /**
