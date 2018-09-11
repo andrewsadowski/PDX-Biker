@@ -9,7 +9,7 @@ export default class MapContainer extends Component {
 	state = {
 		status: {
 			loading: false,
-			locationFound: null,
+			locationFound: false,
 			error: false,
 			message: null
 		},
@@ -21,6 +21,9 @@ export default class MapContainer extends Component {
 	};
 
 	async componentDidMount() {
+		document.addEventListener('tile', (e) => {
+		  console.log('"tile" event:', e)
+		});
 		/***
 		 * All data needed by the Map component is loaded here. Once 
 		 * loaded, data is passed as geoJSON and latlng props to the 
@@ -73,29 +76,34 @@ export default class MapContainer extends Component {
 				message: 'Locating your position'
 			}
 		});
-		await navigator.geolocation.getCurrentPosition(pos => {
-			console.log('getCurrentPosition, pos:', pos);
-			this.setState({
-				status: {
-					...this.state.status,
-					locationFound: true
-				},
-				latlng: {
-					lat: pos.coords.latitude,
-					lng: pos.coords.longitude
-				}
-			});
+		await navigator.geolocation.getCurrentPosition(this.handleLocationFound.bind(this), this.handleLocationError.bind(this));
+	}
+
+	handleLocationError(err) {
+		console.error('Could not get current position:', err);
+
+		this.setState({
+			status: {
+				...this.state.status,
+				error: true,
+				message: 'Could not locate your position'
+			}
 		});
 	}
 
-	handleLocationFound() {
-		console.log('handleLocationFound')
+	handleLocationFound(pos) {
+		console.log('handleLocationFound, pos:', pos)
 		this.setState({
-			staus: {
+			status: {
+				...this.state.status,
 				locationFound: true,
 				message: null
+			},
+			latlng: {
+				lat: pos.coords.latitude,
+				lng: pos.coords.longitude
 			}
-		})
+		});
 	}
 
 	render() {
