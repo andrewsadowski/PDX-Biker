@@ -24,17 +24,6 @@ export default class PDXMap extends Component {
   componentDidMount() {
     const { geoJSON, status } = this.props;
     const map = this.mapRef.current.leafletElement;
-
-    /***
-     * Using navigator.geolocation.getCurrentPosition 
-     * in MapContainer to get users position, which is
-     * then passed to Map component as props.
-     */
-    if (!status.locationFound) {
-      map.locate({
-        setView: true
-      });
-    }
     
     L.geoJSON(geoJSON, {
       style: feature => {
@@ -114,7 +103,7 @@ export default class PDXMap extends Component {
         length={4}
         onClick={this.handleClick}
         setView={true}
-        onLocationfound={() => handleLocationFound()}
+        onLocationfound={(pos) => handleLocationFound({coords: {latitude: pos.latitude, longitude: pos.longitude}})}
         ref={this.mapRef}
         zoom={14}
       >
