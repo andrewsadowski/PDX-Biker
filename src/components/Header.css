@@ -39,6 +39,7 @@
     width: 100vh;
     border-radius: 1px;
     justify-content: flex-end;
+    padding-right: 25px;
   }
   .header-title {
     align-self: flex-start;
