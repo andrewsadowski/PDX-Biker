@@ -1,5 +1,5 @@
 <p align="center"> 
-<img width="300" height="300" src="https://s3-us-west-2.amazonaws.com/andrew-sadowski-images/pdx-biker.png">
+<img width="250" height="250" src="https://s3-us-west-2.amazonaws.com/andrew-sadowski-images/pdx-biker.png">
 </p>
 
 # PDX-Biker
@@ -16,7 +16,7 @@ For developing locally: recent version of NodeJS installed and configured. Get t
 
 ### Installing
 
-Install Depenencies by typing:
+Install Dependencies by typing:
 
 ```
 npm install
