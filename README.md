@@ -1,3 +1,5 @@
+![](https://s3-us-west-2.amazonaws.com/andrew-sadowski-images/pdx-biker.png)
+
 # PDX-Biker
 
 A React-Leaflet web application that shows a map of Portland Oregon with all the bike-approved streets highlighted, focusing on your current location.
