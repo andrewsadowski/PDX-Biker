@@ -1,33 +1,19 @@
 import React, { Component } from 'react';
+import './StatusMessage.css'
 
 class StatusMessage extends Component {
 	render() {
 		const { status } = this.props;
 
-		const styles = {
-			root: {
-				position : 'fixed',
-				zIndex: 1001,
-				width: '100vw',
-				height: '100vh',
-				paddingTop: '45%',
-				backgroundColor: 'rgba(0, 0, 0, 0.5)',
-				color: '#fff'
-			},
-			error: {
-				color: '#fff'
-			}
-		}
-
 		return (
-				<div style={styles.root}>
+				<div className="status-message-container">
 					{ status.error ?
-						<div style={styles.error}>
+						<div className="status-error">
 							<h2>Sorry, something went wrong:</h2>
 							<p>{status.message}</p>
 						</div>
 						:
-						<div>
+						<div className="status-message">
 							<p>{status.message || 'Loading'}...</p>
 						</div>
 					}

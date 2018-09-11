@@ -1,0 +1,17 @@
+.status-message-container {
+	position: fixed;
+	z-index: 1001;
+	width: 100vw;
+	height: 100vh;
+	padding-top: 45%;
+	background-color: rgba(0, 0, 0, 0.5);
+	color: #fff;
+}
+
+.status-error {
+
+}
+
+.status-message {
+
+}
