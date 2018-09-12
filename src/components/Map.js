@@ -1,5 +1,4 @@
 import React, { createRef, Component } from 'react';
-import ReactDOM from 'react-dom';
 import L from 'leaflet';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 
