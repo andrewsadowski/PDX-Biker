@@ -16,8 +16,8 @@
 
 }
 
- @media (min-width: 320px) and (max-width: 480px) {
-p {
+@media (min-width: 320px) and (max-width: 480px) {
+	p {
     font-size: 1.3em;
   }
 } 

@@ -32,26 +32,17 @@
   font-family: 'Faster One', cursive;
 }
 
- @media (min-width: 320px) and (max-width: 480px) {
+@media (min-width: 320px) and (max-width: 480px) {
   .header-container {
     display: flex;
     height: auto;
     width: 100vh;
+    opacity: 0.8;
     border-radius: 1px;
     justify-content: flex-end;
-    padding-right: 25px;
+    padding-right: 10px;
   }
   .header-title {
     align-self: flex-start;
   }
-} 
-
-/* .header-subtitle {
-  opacity: 1;
-  grid-column: 3 / span 2;
-  align-self: start;
-  justify-self: left;
-  padding: 10px;
-  font-size: 12px;
-  font-family: 'Vampiro One', cursive;
-} */
+}

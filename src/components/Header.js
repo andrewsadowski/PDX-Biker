@@ -6,7 +6,7 @@ export default class Header extends Component {
     return (
       <div className="header-container">
         <h2 className="header-title">
-          <span className="header-city">PDX </span>
+          <span className="header-city">PDX</span>
           <br />
           Biker
         </h2>
