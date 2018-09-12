@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import MapContainer from './components/MapContainer';
-import Header from './components/Header';
-import './App.css';
+import React, { Component } from "react";
+import MapContainer from "./components/MapContainer";
+import Header from "./components/Header";
+import "./App.css";
 
 class App extends Component {
   render() {

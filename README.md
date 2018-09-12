@@ -1,6 +1,6 @@
-<p align="center"> 
+<div align="center"> 
 <img width="250" height="250" src="https://s3-us-west-2.amazonaws.com/andrew-sadowski-images/pdx-biker.png">
-</p>
+</div>
 
 # PDX-Biker
 
