@@ -1,11 +1,11 @@
-import React, { createRef, Component } from "react";
-import L from "leaflet";
-import { Map, TileLayer, Marker, Popup } from "react-leaflet";
+import React, { createRef, Component } from 'react';
+import L from 'leaflet';
+import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 
-import "./Map.css";
+import './Map.css';
 
 const ARCGIS_REQUEST_URL =
-  "https://opendata.arcgis.com/datasets/40151125cedd49f09d211b48bb33f081_183.geojson";
+  'https://opendata.arcgis.com/datasets/40151125cedd49f09d211b48bb33f081_183.geojson';
 
 export default class PDXMap extends Component {
   constructor(props) {
@@ -37,7 +37,7 @@ export default class PDXMap extends Component {
   }
 
   handleClick = () => {
-    console.log("### this.mapRef:", this.mapRef);
+    console.log('### this.mapRef:', this.mapRef);
     this.mapRef.current.leafletElement.locate();
   };
 
@@ -51,7 +51,7 @@ export default class PDXMap extends Component {
 
   getGeoJsonStyle = (feature, layer) => {
     return {
-      color: "#006400",
+      color: '#006400',
       weight: 10,
       opacity: 0.5
     };
@@ -81,7 +81,10 @@ export default class PDXMap extends Component {
         setView={true}
         onLocationfound={pos =>
           handleLocationFound({
-            coords: { latitude: pos.latitude, longitude: pos.longitude }
+            coords: {
+              latitude: pos.latitude,
+              longitude: pos.longitude
+            }
           })
         }
         ref={this.mapRef}
@@ -99,6 +102,6 @@ export default class PDXMap extends Component {
 }
 
 /**
- * TODO:  Remove Leaflet based GeoLocation management
+ * TODO:  Add Toggle-able tile layer with topographical indicators
  *
  */
