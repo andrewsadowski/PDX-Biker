@@ -22,3 +22,7 @@ class App extends Component {
 }
 
 export default App;
+
+/**
+ * TODO: Add and check Google Analytics to project
+ */
