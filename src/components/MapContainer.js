@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import Map from './Map';
 import StatusMessage from './StatusMessage';
 import axios from 'axios';
-const LLS = require('../../public/assets/LargeLocalStorage');
+// const LLS = require('../assets/LargeLocalStorage.min.js');
 
 const ARCGIS_REQUEST_URL =
   'https://opendata.arcgis.com/datasets/40151125cedd49f09d211b48bb33f081_183.geojson';
