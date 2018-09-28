@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import Map from "./Map";
-import StatusMessage from "./StatusMessage";
-import axios from "axios";
+import React, { Component, Fragment } from 'react';
+import Map from './Map';
+import StatusMessage from './StatusMessage';
+import axios from 'axios';
 
 const ARCGIS_REQUEST_URL =
-  "https://opendata.arcgis.com/datasets/40151125cedd49f09d211b48bb33f081_183.geojson";
+  'https://opendata.arcgis.com/datasets/40151125cedd49f09d211b48bb33f081_183.geojson';
 
 export default class MapContainer extends Component {
   state = {
@@ -38,13 +38,15 @@ export default class MapContainer extends Component {
     this.setState({
       status: {
         loading: true,
-        message: "Loading recommended bike routes"
+        message: 'Loading recommended bike routes'
       }
     });
+    await this.isLocalStorage();
+
     await axios
       .get(ARCGIS_REQUEST_URL)
       .then(response => {
-        console.log("ArcGIS response:", response);
+        console.log('ArcGIS response:', response);
         this.setState({
           status: {
             ...this.state.status,
@@ -55,13 +57,13 @@ export default class MapContainer extends Component {
         });
       })
       .catch(err => {
-        console.error("Could not retrieve geoJSON data:", err);
+        console.error('Could not retrieve geoJSON data:', err);
         this.setState({
           status: {
             ...this.state.status,
             loading: false,
             error: true,
-            message: "Could not retrieve geoJSON data"
+            message: 'Could not retrieve geoJSON data'
           }
         });
       });
@@ -69,7 +71,7 @@ export default class MapContainer extends Component {
     this.setState({
       status: {
         ...this.state.status,
-        message: "Locating your position"
+        message: 'Locating your position'
       }
     });
     await navigator.geolocation.getCurrentPosition(
@@ -78,20 +80,32 @@ export default class MapContainer extends Component {
     );
   }
 
+  isLocalStorage = () => {
+    if (localStorage.getItem('bikeRouteData')) {
+      console.log('Thar it be');
+    } else {
+      console.log('Thar it aint');
+    }
+  };
+
+  handleLocalStorage = (key, data) => {
+    localStorage.setItem(key, JSON.stringify(data));
+  };
+
   handleLocationError(err) {
-    console.error("Could not get current position:", err);
+    console.error('Could not get current position:', err);
 
     this.setState({
       status: {
         ...this.state.status,
         error: true,
-        message: "Could not locate your position"
+        message: 'Could not locate your position'
       }
     });
   }
 
   handleLocationFound(pos) {
-    console.log("handleLocationFound, pos:", pos);
+    console.log('handleLocationFound, pos:', pos);
     this.setState({
       status: {
         ...this.state.status,
