@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import Map from './Map';
 import StatusMessage from './StatusMessage';
 import axios from 'axios';
+import { idbGeoJSON, requestGeoJSON } from '../utils';
 // const LLS = require('../assets/LargeLocalStorage.min.js');
 
 const ARCGIS_REQUEST_URL =
@@ -42,32 +43,42 @@ export default class MapContainer extends Component {
         message: 'Loading recommended bike routes'
       }
     });
-    await this.isLocalStorage();
 
-    await axios
-      .get(ARCGIS_REQUEST_URL)
-      .then(response => {
-        console.log('ArcGIS response:', response);
-        this.setState({
-          status: {
-            ...this.state.status,
-            loading: false
-            // message: null
-          },
-          geoJSON: response.data
-        });
-      })
-      .catch(err => {
-        console.error('Could not retrieve geoJSON data:', err);
-        this.setState({
-          status: {
-            ...this.state.status,
-            loading: false,
-            error: true,
-            message: 'Could not retrieve geoJSON data'
-          }
-        });
+    /***
+     * Check indexedDB for stored geoJSON data.
+     * If no data is found in indexedDB, make a new ARCGIS request 
+     * and set response data to indexedDB if the request is succesfull.
+     */
+    let geoJSON = await idbGeoJSON.getAll()
+    if (!geoJSON || geoJSON.length < 1) {
+      geoJSON = await requestGeoJSON(ARCGIS_REQUEST_URL);
+
+      // Only set idb-store if geoJSON is defined
+      geoJSON && idbGeoJSON.setAll(geoJSON);
+    }
+    console.log('geoJSON:', geoJSON)
+    
+    // Set error state if requestGeoJSON returns undefined
+    if (!geoJSON) {
+      return this.setState({
+        status: {
+          ...this.state.status,
+          loading: false,
+          error: true,
+          message: 'Could not retrieve geoJSON data'
+        }
       });
+    }
+    
+    // Otherwise, geoJSON was succesfully retrieved
+    this.setState({
+      status: {
+        ...this.state.status,
+        loading: false
+        // message: null
+      },
+      geoJSON: geoJSON
+    });
 
     this.setState({
       status: {
