@@ -3,7 +3,6 @@ import Map from './Map';
 import StatusMessage from './StatusMessage';
 import axios from 'axios';
 import { idbGeoJSON, requestGeoJSON } from '../utils';
-// const LLS = require('../assets/LargeLocalStorage.min.js');
 
 const ARCGIS_REQUEST_URL =
   'https://opendata.arcgis.com/datasets/40151125cedd49f09d211b48bb33f081_183.geojson';
@@ -46,18 +45,18 @@ export default class MapContainer extends Component {
 
     /***
      * Check indexedDB for stored geoJSON data.
-     * If no data is found in indexedDB, make a new ARCGIS request 
+     * If no data is found in indexedDB, make a new ARCGIS request
      * and set response data to indexedDB if the request is succesfull.
      */
-    let geoJSON = await idbGeoJSON.getAll()
+    let geoJSON = await idbGeoJSON.getAll();
     if (!geoJSON || geoJSON.length < 1) {
       geoJSON = await requestGeoJSON(ARCGIS_REQUEST_URL);
 
       // Only set idb-store if geoJSON is defined
       geoJSON && idbGeoJSON.setAll(geoJSON);
     }
-    console.log('geoJSON:', geoJSON)
-    
+    console.log('geoJSON:', geoJSON);
+
     // Set error state if requestGeoJSON returns undefined
     if (!geoJSON) {
       return this.setState({
@@ -69,7 +68,7 @@ export default class MapContainer extends Component {
         }
       });
     }
-    
+
     // Otherwise, geoJSON was succesfully retrieved
     this.setState({
       status: {
