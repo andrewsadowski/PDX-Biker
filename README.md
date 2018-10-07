@@ -1,8 +1,7 @@
 <div align="center"> 
-<img width="250" height="250" src="https://s3-us-west-2.amazonaws.com/andrew-sadowski-images/pdx-biker.png">
+<img width="100%" height="250" src="https://s3-us-west-2.amazonaws.com/andrew-sadowski-images/pdxBiker-wideLogo.png">
 </div>
-
-# PDX-Biker
+<br />
 
 A React-Leaflet web application that shows a map of Portland Oregon with all the bike-approved streets highlighted, focusing on your current location.
 
