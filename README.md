@@ -1,5 +1,5 @@
 <div align="center"> 
-<img width="100%" height="250" src="https://s3-us-west-2.amazonaws.com/andrew-sadowski-images/pdxBiker-wideLogo.png">
+<img width="100%" height="275" src="https://s3-us-west-2.amazonaws.com/andrew-sadowski-images/pdxBiker-wideLogo.png">
 </div>
 <br />
 
