@@ -5,7 +5,8 @@ import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import './Map.css';
 
 const ARCGIS_REQUEST_URL =
-  'https://opendata.arcgis.com/datasets/40151125cedd49f09d211b48bb33f081_183.geojson';
+  'https://opendata.arcgis.com/datasets/fcd1f0403cbf484bb46233b44d96f220_183.geojson';
+  
 
 export default class PDXMap extends Component {
   constructor(props) {
@@ -25,7 +26,7 @@ export default class PDXMap extends Component {
     if (!status.locationFound) {
       map.locate({ setView: true });
     }
-
+    
     L.geoJSON(geoJSON, {
       style: feature => {
         return {
@@ -34,6 +35,7 @@ export default class PDXMap extends Component {
         };
       }
     }).addTo(map);
+
   }
 
   handleClick = () => {
