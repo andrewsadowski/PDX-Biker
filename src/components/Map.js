@@ -26,7 +26,7 @@ export default class PDXMap extends Component {
     if (!status.locationFound) {
       map.locate({ setView: true });
     }
-    
+
     L.geoJSON(geoJSON, {
       style: feature => {
         return {
@@ -49,14 +49,6 @@ export default class PDXMap extends Component {
       hasLocation: true,
       latlng: e.latlng
     });
-  };
-
-  getGeoJsonStyle = (feature, layer) => {
-    return {
-      color: '#006400',
-      weight: 10,
-      opacity: 0.5
-    };
   };
 
   renderMarker() {
