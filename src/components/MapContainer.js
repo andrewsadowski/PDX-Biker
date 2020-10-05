@@ -1,11 +1,10 @@
 import React, { Component, Fragment } from 'react';
-import Map from './Map';
+import PDXMap from './Map';
 import StatusMessage from './StatusMessage';
-import axios from 'axios';
 import { idbGeoJSON, requestGeoJSON } from '../utils';
 
 const ARCGIS_REQUEST_URL =
-  'https://opendata.arcgis.com/datasets/40151125cedd49f09d211b48bb33f081_183.geojson';
+  'https://opendata.arcgis.com/datasets/fcd1f0403cbf484bb46233b44d96f220_183.geojson';
 
 export default class MapContainer extends Component {
   state = {
@@ -139,7 +138,7 @@ export default class MapContainer extends Component {
           <StatusMessage status={status} />
         ) : null}
         {geoJSON && (
-          <Map
+          <PDXMap
             geoJSON={geoJSON}
             status={status}
             latlng={latlng}
