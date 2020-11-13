@@ -39,7 +39,6 @@ export default class PDXMap extends Component {
   }
 
   handleClick = () => {
-    console.log('### this.mapRef:', this.mapRef);
     this.mapRef.current.leafletElement.locate();
   };
 
